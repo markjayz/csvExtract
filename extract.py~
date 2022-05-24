@@ -1,0 +1,5 @@
+import pandas as pd
+import warnings as warn
+workbook = pd.read_excel('/Users/markjaysonlomboy/Downloads/GoGo_Xpress_Template.xlsx')
+print(workbook.head())
+print(workbook['Product'].iloc[0])
