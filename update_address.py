@@ -23,9 +23,9 @@ with open(f'{today}_created-address-staging-2.csv', 'w', encoding='UTF8') as f:
 
                 for province in data['data']:
                     province_name = province['name']
-                    region = province['cluster']
                     if province_name.lower() == row['state'].lower():
                         id = province['id']
+                        region = province['cluster']
                         url_city = url + str(id) + '/cities'
                         response_city = requests.get(url_city, headers=headers)
                         data_city  = json.loads(response_city.text)
