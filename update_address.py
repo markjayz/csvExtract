@@ -5,9 +5,22 @@ import requests, json
 import csv
 from datetime import date
 
-workbook = pd.read_csv('D:/Work/Files/QuadX/Templates/sample_staging.csv')
+# prod-data-first-batch
+# prod-data-second-batch
+# prod-data-third-batch
+# prod-data-fourth-batch
+# prod-data-fifth-batch
+# prod-data-sixth-batch
+workbook = pd.read_csv('D:/Work/Files/QuadX/Templates/Update/prod-data-sixth-batch.csv')
 today = date.today()
-with open(f'{today}_created-address-staging-2.csv', 'w', encoding='UTF8') as f:
+
+# _created-address-first-batch-prod
+# _created-address-second-batch-prod
+# _created-address-third-batch-prod
+# _created-address-fourth-batch-prod
+# _created-address-fifth-batch-prod
+# _created-address-sixth-batch-prod
+with open(f'{today}_created-address-sixth-batch-prod.csv', 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
     header = ['Party ID', 'Line 1', 'Barangay', 'City',  'State', 'Postal Code', 'Country Code', 'Region']
      # write the header
@@ -44,7 +57,7 @@ with open(f'{today}_created-address-staging-2.csv', 'w', encoding='UTF8') as f:
                                             district_code = district['postal_code']
                                             district_name = district['name']
                                     
-                                            update_url = "https://sc-api.shippingcart.com/api/addresses/" + str(row['id']) + "/update"
+                                            update_url = "https://sc-api.prod.shippingcart.com/api/addresses/" + str(row['id']) + "/update"
                                             update_headers = {
                                                     'Connection': 'keep-alive',
                                                     "Accept-Encoding": "*",
