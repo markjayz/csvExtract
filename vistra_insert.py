@@ -19,7 +19,7 @@ with open(f'output/{today}_vistra_payload.csv', 'w', encoding='UTF8') as f:
                     'Connection': 'keep-alive',
                     "Accept-Encoding": "*",
                     'Content-Type': 'application/json',
-                    'authorization': 'Bearer DJkzHFXSdIZWK23mRJjaY9O5X5EvyqPiqvvDtAYztcgHsO0dWDN_5oBBNlH6H9OmGPRVR7v9lsF_PaYaGCSHF7jGWsI_T-XfWBoZUd8X3biRVfW6CCemsNvJ0oJhLP9p5wvFJuW1X0DKZlnvY3gx2Kfp93heRV0gazVSJPBx_AcLIqoPUthQjAQiTTTZgax91jY2nuLvKWe33VQDmjwJow'
+                    'authorization': 'Bearer {token}'
                 }
             payload = {
                 "Tracking": row['Tracking'],
