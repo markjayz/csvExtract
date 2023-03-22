@@ -5,7 +5,7 @@ import requests, json
 import csv
 from datetime import date
 
-workbook = pd.read_csv('C:/Users/John Richard/Project/csvExtract/input/vistra-extract.csv')
+workbook = pd.read_csv('input/vistra-extract.csv')
 today = date.today()
 with open(f'output/{today}_vistra_payload.csv', 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
