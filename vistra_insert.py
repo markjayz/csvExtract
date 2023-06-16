@@ -3,23 +3,24 @@ from turtle import up
 import pandas as pd
 import requests, json
 import csv
+import config
 from datetime import date
 
-workbook = pd.read_csv('input/vistra-extract.csv')
 today = date.today()
-with open(f'output/{today}_vistra_payload.csv', 'w', encoding='UTF8') as f:
+workbook = pd.read_csv(f'input/vistra/vistra-data.csv')
+with open(f'output/{today}_vistra_response.csv', 'w', encoding='UTF8') as f:
     writer = csv.writer(f)
-    header = ['TrackingNumber', 'Payload']
+    header = ['TrackingNumber', 'Payload', 'Response']
      # write the header
     writer.writerow(header)
     def my_function():
         for index, row in workbook.iterrows():
-            vistra_url = "https://appsvc.azurewebsites.net/wmsapi/api/ShippingCart/InsertOrder"
+            vistra_url = config.VISTRA_URL
             update_headers = {
                     'Connection': 'keep-alive',
                     "Accept-Encoding": "*",
                     'Content-Type': 'application/json',
-                    'authorization': 'Bearer {token}'
+                    'authorization': "Bearer " + config.VISTRA_TOKEN
                 }
             payload = {
                 "Tracking": row['Tracking'],
@@ -41,7 +42,7 @@ with open(f'output/{today}_vistra_payload.csv', 'w', encoding='UTF8') as f:
                 "Weight": row['Weight'],
             }
             response = requests.post(vistra_url, headers=update_headers, data=json.dumps(payload))
-            data_csv = [row['Tracking'], json.dumps(payload)]
+            data_csv = [row['Tracking'], json.dumps(payload), response.text]
             print(response.text)
             writer.writerow(data_csv)
     my_function()
